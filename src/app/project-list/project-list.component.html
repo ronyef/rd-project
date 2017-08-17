@@ -1,0 +1,95 @@
+<div class="section section-basic">
+  <h3 class="judul text-center">Daftar Proyek Pengembangan Produk</h3>
+  <div fxLayout="row" fxLayoutWrap fxLayoutAlign="start start">
+    <app-project-item *ngFor="let project of projects; let i = index" [project]="project" [index]="i"></app-project-item>
+    <div fxLayout="column">
+      <!-- Button trigger modal -->
+      <button class="btn btn-primary btn-icon  btn-icon-mini btn-round" data-toggle="modal" data-target="#myModal">
+        <i class="now-ui-icons ui-2_favourite-28"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Core -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Tambahkan Project</h4>
+      </div> -->
+      <div class="modal-body">
+
+        <form class="form" #form="ngForm" (ngSubmit)="onNewProject(form)">
+          <div class="header header-primary text-center">
+            <h4 class="title title-up">Tambah Project</h4>
+          </div>
+          <div class="content">
+            <div class="input-group form-group-no-border">
+              <span class="input-group-addon">
+                                <i class="now-ui-icons users_circle-08"></i>
+                            </span>
+              <input type="text" class="form-control" name="name" required [(ngModel)]="name" placeholder="Nama Project...">
+            </div>
+            <div class="input-group form-group-no-border">
+              <span class="input-group-addon">
+                                <i class="now-ui-icons ui-1_email-85"></i>
+                            </span>
+              <textarea class="form-control" placeholder="Deskripsi project...." rows="5" name="description" required [(ngModel)]="description"></textarea>
+            </div>
+            <div class="input-group form-group-no-border">
+              <span class="input-group-addon">
+                                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                            </span>
+              <input type="text" placeholder="Customer..." class="form-control" name="customer" [(ngModel)]="customer"/>
+            </div>
+            <div class="input-group form-group-no-border">
+              <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxLayout="column">
+                  <div class="radio">
+                    <input type="radio" name="status" id="radio1" checked="" value="Belum Mulai" [(ngModel)]="status">
+                    <label for="radio1">
+                            Belum Mulai 
+                        </label>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                  <div class="radio">
+                    <input type="radio" name="status" id="radio2" value="Sedang Progress" [(ngModel)]="status">
+                    <label for="radio2">
+                            Sedang Progress 
+                        </label>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                  <div class="radio">
+                    <input type="radio" name="status" id="radio3" value="Batal" [(ngModel)]="status">
+                    <label for="radio3">
+                            Batal 
+                    </label>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="radio">
+                      <input type="radio" name="status" id="radio4" value="Selesai" [(ngModel)]="status">
+                      <label for="radio4">
+                              Selesai 
+                      </label>
+                    </div>
+                  </div>
+              </div>  
+            </div>
+          </div>
+          <div class="footer text-center">
+              <button class="btn btn-primary" [disabled]="!form.valid">Kirim</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
